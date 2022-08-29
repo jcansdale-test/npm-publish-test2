@@ -20,7 +20,29 @@ jobs:
           registry-url: https://npm.pkg.github.com
 
       - name: Create a package called @${{ github.repository }}
-        run: npm init --scope ${{ github.repository_owner }} -y
+        run: |
+          echo '{
+            "name": "@${{ github.repository }}",
+            "version": "1.0.2",
+            "description": "A simple npm package to demonstrate GitHub Package Registry",
+            "main": "index.js",
+            "scripts": {
+            "test": "echo "Error: no test specified" && exit 1"
+            },
+            "repository": {
+            "type": "git",
+            "url": "https://github.com/${{ github.repository }}"
+            },
+            "author": "jcansdale-test",
+            "license": "ISC",
+            "bugs": {
+            "url": "https://github.com/chadqueen/hello-world-npm/issues"
+            },
+            "homepage": "https://github.com/${{ github.repository }}#readme",
+            "publishConfig": {
+            "registry":"https://npm.pkg.github.com/"
+            }
+          }' > package.json
 
       - name: Add index.js to package
         run: echo 'exports.sayHello = () => { console.log("Hello from ${{ github.repository }}!") }' > index.js
