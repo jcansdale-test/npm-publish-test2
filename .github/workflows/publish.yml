@@ -22,7 +22,7 @@ jobs:
       - name: Create a package called @${{ github.repository }}
         run: |
           echo '{
-            "name": "@${{ github.repository }}",
+            "name": "@jcansdale-test/npm-publish-test.2",
             "version": "1.0.2",
             "description": "A simple npm package to demonstrate GitHub Package Registry",
             "main": "index.js",
